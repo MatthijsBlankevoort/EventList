@@ -17,8 +17,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyViewHolder> {
     private List<Event> mBucketListItems = new ArrayList<>();
@@ -30,13 +37,15 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
+        public TextView nameText;
+        public TextView dateText;
         public ImageView imageView;
         public CardView cardView;
 
         public MyViewHolder(View v) {
             super(v);
-            textView = v.findViewById(R.id.dateText);
+            dateText = v.findViewById(R.id.dateText);
+            nameText = v.findViewById(R.id.nameText);
             imageView = v.findViewById(R.id.coverImage);
             cardView = v.findViewById(R.id.card_view);
         }
@@ -64,7 +73,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.
-                textView.setText(mBucketListItems.get(position).getName());
+                nameText.setText(mBucketListItems.get(position).getName());
+        holder.dateText.setText(LocalDate.parse(mBucketListItems.get(position).getDates().getStart().getLocalDate()).format(DateTimeFormatter.ofPattern("dd MMM")));
 //        Glide.with(EventListAdapter.this)
         this.glide.load(mBucketListItems.get(position).getImages().get(0).getUrl()).into(holder.imageView);
 

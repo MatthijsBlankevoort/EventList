@@ -36,9 +36,9 @@ public class Event {
 //    @SerializedName("sales")
 //    @Expose
 //    private Sales sales;
-//    @SerializedName("dates")
-//    @Expose
-//    private Dates dates;
+    @SerializedName("dates")
+    @Expose
+    private Dates dates;
 //    @SerializedName("classifications")
 //    @Expose
 //    private List<Classification> classifications = null;
@@ -132,13 +132,13 @@ public class Event {
 //        this.sales = sales;
 //    }
 //
-//    public Dates getDates() {
-//        return dates;
-//    }
-//
-//    public void setDates(Dates dates) {
-//        this.dates = dates;
-//    }
+    public Dates getDates() {
+        return dates;
+    }
+
+    public void setDates(Dates dates) {
+        this.dates = dates;
+    }
 //
 //    public List<Classification> getClassifications() {
 //        return classifications;

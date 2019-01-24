@@ -36,7 +36,7 @@ public interface TicketMasterApiService {
      * day of month. It will be put in a DayQuoteTime object by Retrofit.
      */
 
-    @GET("/discovery/v2/events.json?segmentId=KZFzniwnSyZfZ7v7nJ&radius=20&countryCode=NL&size=50&sort=date,asc")
+        @GET("/discovery/v2/events.json?segmentId=KZFzniwnSyZfZ7v7nJ&radius=20&unit=km&countryCode=NL&size=50&sort=date,asc")
     /**
      * "DayQuoteTime" is the name of the helper class just defined, defining the datamodel, and given as argument.
      * "getTodaysQuote" is the name of the symbol get method. It can be chosen at wish, as long as it is invoked
