@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestManager;
 
@@ -22,6 +24,7 @@ public class MyEventListAdapter extends RecyclerView.Adapter<MyEventListAdapter.
 
     private final RequestManager glide;
     private Context context;
+
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -63,8 +66,23 @@ public class MyEventListAdapter extends RecyclerView.Adapter<MyEventListAdapter.
         holder.
                 textView.setText(mBucketListItems.get(position).getName());
         this.glide.load(mBucketListItems.get(position).getImageUrl()).into(holder.imageView);
+        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                CharSequence text = mBucketListItems.get(position).getName() + " removed from your list!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+                MainActivity.bucketListViewModel.delete(mBucketListItems.get(position));
+                mBucketListItems.remove(position);
+                notifyDataSetChanged();
 
 
+                return true;
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

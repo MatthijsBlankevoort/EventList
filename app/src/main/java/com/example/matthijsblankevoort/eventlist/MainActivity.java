@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -193,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call <Example> call, Response<Example> response) {
                     if(response.body().getEmbedded() != null) {
                         List<Event> allNearbyEvents = response.body().getEmbedded().getEvents();
+                        eventList.clear();
                         eventList.addAll(allNearbyEvents);
                         mAdapter.notifyDataSetChanged();
                     }
@@ -243,10 +245,13 @@ public class MainActivity extends AppCompatActivity {
             bucketListViewModel.getBucketListItems().observe(this, new Observer<List<EventEntity>>() {
                 @Override
                 public void onChanged(@Nullable List<EventEntity> reminders) {
+                    eventList.clear();
                     eventList.addAll(reminders);
                     mAdapter.notifyDataSetChanged();
                 }
             });
+
+
 
             return rootView;
         }

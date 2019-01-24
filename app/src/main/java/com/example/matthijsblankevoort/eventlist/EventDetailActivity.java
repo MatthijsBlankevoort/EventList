@@ -1,5 +1,6 @@
 package com.example.matthijsblankevoort.eventlist;
 
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -35,13 +37,20 @@ public class EventDetailActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventEntity event = new EventEntity();
+            EventEntity event = new EventEntity();
 
-                event.setName(currentEvent.getName());
-                event.setImageUrl(currentEvent.getImages().get(0).getUrl());
+            event.setName(currentEvent.getName());
+            event.setImageUrl(currentEvent.getImages().get(0).getUrl());
 
-                MainActivity.bucketListViewModel.insert(event);
-                finish();
+            MainActivity.bucketListViewModel.insert(event);
+
+            Context context = getApplicationContext();
+            CharSequence text = currentEvent.getName() + " added to your list!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            finish();
             }
         });
         requestData();
