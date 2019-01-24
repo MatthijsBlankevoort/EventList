@@ -10,11 +10,24 @@ public class Embedded {
     @Expose
     private List<Event> events = null;
 
+    @SerializedName("venues")
+    @Expose
+    private List<Venue> venues = null;
+
+
     public List<Event> getEvents() {
         return events;
     }
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public List<Venue> getVenues() {
+        return venues;
+    }
+
+    public void setVenues(List<Venue> venues) {
+        this.venues = venues;
     }
 }

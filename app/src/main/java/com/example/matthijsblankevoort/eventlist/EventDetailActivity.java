@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,6 +43,7 @@ public class EventDetailActivity extends AppCompatActivity {
             EventEntity event = new EventEntity();
 
             event.setName(currentEvent.getName());
+            event.setDate(LocalDate.parse(currentEvent.getDates().getStart().getLocalDate()).format(MainActivity.DATE_FORMAT));
             event.setImageUrl(currentEvent.getImages().get(0).getUrl());
 
             MainActivity.bucketListViewModel.insert(event);
@@ -69,7 +73,15 @@ public class EventDetailActivity extends AppCompatActivity {
                 Event event = response.body();
                 currentEvent = event;
                 Glide.with(EventDetailActivity.this).load(event.getImages().get(0).getUrl()).into(imageView);
-                detailName.setText(event.getName());
+                detailName.setText("EVENT " + event.getName());
+                venueText.setText("VENUE " + event.getEmbedded().getVenues().get(0).getName());
+                System.out.println(currentEvent.getPriceRanges().size());
+                if (currentEvent.getPriceRanges() != null && currentEvent.getPriceRanges().get(0).getMin() != null) {
+                    priceText.setText("Price range: €" + Double.toString(currentEvent.getPriceRanges().get(0).getMin()) + " - €" + Double.toString(currentEvent.getPriceRanges().get(currentEvent.getPriceRanges().size() - 1).getMax()));
+                } else {
+                    priceText.setText("Price range: UNKNOWN");
+                }
+
             }
 
             @Override

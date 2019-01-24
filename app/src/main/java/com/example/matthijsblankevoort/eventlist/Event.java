@@ -48,9 +48,12 @@ public class Event {
 //    @SerializedName("promoters")
 //    @Expose
 //    private List<Promoter_> promoters = null;
-//    @SerializedName("priceRanges")
-//    @Expose
-//    private List<PriceRange> priceRanges = null;
+    @SerializedName("priceRanges")
+    @Expose
+    private List<PriceRange> priceRanges = null;
+    @SerializedName("_embedded")
+    @Expose
+    private Embedded embedded;
 
     public String getName() {
         return name;
@@ -164,12 +167,19 @@ public class Event {
 //        this.promoters = promoters;
 //    }
 //
-//    public List<PriceRange> getPriceRanges() {
-//        return priceRanges;
-//    }
-//
-//    public void setPriceRanges(List<PriceRange> priceRanges) {
-//        this.priceRanges = priceRanges;
-//    }
+    public List<PriceRange> getPriceRanges() {
+        return priceRanges;
+    }
 
+    public void setPriceRanges(List<PriceRange> priceRanges) {
+        this.priceRanges = priceRanges;
+    }
+
+    public Embedded getEmbedded() {
+        return embedded;
+    }
+
+    public void setEmbedded(Embedded embedded) {
+        this.embedded = embedded;
+    }
 }

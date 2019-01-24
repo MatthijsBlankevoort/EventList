@@ -30,13 +30,15 @@ public class MyEventListAdapter extends RecyclerView.Adapter<MyEventListAdapter.
     // you provide access to all the views for a data item in a view holder
     public static class MyEventListViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
+        public TextView dateText;
+        public TextView nameText;
         public ImageView imageView;
         public CardView cardView;
 
         public MyEventListViewHolder(View v) {
             super(v);
-            textView = v.findViewById(R.id.dateText);
+            dateText = v.findViewById(R.id.dateText);
+            nameText = v.findViewById(R.id.nameText);
             imageView = v.findViewById(R.id.coverImage);
             cardView = v.findViewById(R.id.card_view);
         }
@@ -63,8 +65,8 @@ public class MyEventListAdapter extends RecyclerView.Adapter<MyEventListAdapter.
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final MyEventListAdapter.MyEventListViewHolder holder, final int position) {
-        holder.
-                textView.setText(mBucketListItems.get(position).getName());
+        holder.nameText.setText(mBucketListItems.get(position).getName());
+        holder.dateText.setText(mBucketListItems.get(position).getDate());
         this.glide.load(mBucketListItems.get(position).getImageUrl()).into(holder.imageView);
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

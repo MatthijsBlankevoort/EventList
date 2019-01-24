@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     public static final String API_KEY = BuildConfig.TICKETMASTER_API_KEY;
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM");
     public static final int FRAGMENT_AMOUNT = 2;
     /**
      * The {@link ViewPager} that will host the section contents.

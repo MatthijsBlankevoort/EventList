@@ -15,6 +15,9 @@ public class EventEntity {
     @ColumnInfo(name = "imageUrl")
     private String imageUrl;
 
+    @ColumnInfo(name = "date")
+    private String date;
+
     public int getId() {
         return id;
     }
@@ -25,6 +28,14 @@ public class EventEntity {
 
     public String getName() {
         return name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setName(String name) {

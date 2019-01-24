@@ -74,7 +74,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.MyVi
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.
                 nameText.setText(mBucketListItems.get(position).getName());
-        holder.dateText.setText(LocalDate.parse(mBucketListItems.get(position).getDates().getStart().getLocalDate()).format(DateTimeFormatter.ofPattern("dd MMM")));
+        holder.dateText.setText(LocalDate.parse(mBucketListItems.get(position).getDates().getStart().getLocalDate()).format(MainActivity.DATE_FORMAT    ));
 //        Glide.with(EventListAdapter.this)
         this.glide.load(mBucketListItems.get(position).getImages().get(0).getUrl()).into(holder.imageView);
 
